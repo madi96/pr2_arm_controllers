@@ -1,0 +1,38 @@
+<launch>
+  <param name="X" value="0.70"/>
+  <param name="Y" value="0.20"/>
+  <param name="Z" value="0.7"/>
+	<arg name="ns" default="pr2_arm_controllers"/>
+	<arg name="pkg" default="pr2_arm_controllers"/>
+<!--
+	<arg name="exec_name" default="controller_button_primitive"/> 
+-->
+<!--
+	<arg name="exec_name" default="controller_push_primitive"/>
+-->
+<!--
+	<arg name="exec_name" default="controller_grasping_primitive"/>
+-->
+	<arg name="exec_name" default="controller_joystick_primitive"/>
+<!--
+	<arg name="exec_name" default="controller_lego_demo"/> 
+-->
+
+	<arg name="left_tip_name" default="left_gripper"/>
+	<arg name="right_tip_name" default="right_gripper"/>
+	<arg name="no_sim" default="true"/>
+
+	<!--<param  name ="right_gripper_id" value="65538"/>-->
+	<!--<param name ="left_gripper_id" value="131073"/>-->
+	<param name ="use_gripper" value="true"/>
+	<rosparam command="load" file="$(find pr2_arm_controllers)/params/planner_params.yml" ns="/planner_parameters" />
+	<node name="$(arg exec_name)" pkg="$(arg pkg)"  type="$(arg exec_name)" output="screen" launch-prefix="gdb --args">
+<!--
+		<remap from="/robot_description_semantic" to="/$(arg exec_name)/robot_description_semantic"/>
+-->
+<!--
+		<remap from="/$(arg exec_name)/joint_states" to="/joint_states"/>
+-->
+
+	</node>
+</launch>
